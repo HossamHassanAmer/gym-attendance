@@ -12,7 +12,7 @@
 input{padding:11px;border:1px solid #ddd;border-radius:10px;background:#fff;font-size:15px;width:100%;margin:5px 0}button{border:0;border-radius:10px;padding:10px 13px;cursor:pointer}
 .green{background:#16a34a;color:#fff}.blue{background:#2563eb;color:#fff}.dark{background:#111827;color:#fff}.red{background:#dc2626;color:#fff}.gray{background:#eef0f2}
 .row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:13px 0;border-bottom:1px solid #eee}.name{font-weight:bold}.small{font-size:12px;color:#6b7280;margin-top:4px}.badge{padding:6px 9px;border-radius:20px;font-size:12px;background:#dcfce7;color:#15803d}
-.actions{display:flex;gap:6px;flex-wrap:nowrap;align-items:center}.actions button{white-space:nowrap;padding:9px 10px;font-size:13px}.actions button{margin:0}.money{font-weight:bold}.due{color:#dc2626}.paid{color:#15803d}
+.actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;width:300px;flex:0 0 300px}.actions button{white-space:nowrap;padding:9px 8px;font-size:13px;margin:0;width:100%}@media(max-width:560px){.row{align-items:flex-start}.row>.actions{width:270px;flex-basis:270px}.row>div:first-child{min-width:0}}.money{font-weight:bold}.due{color:#dc2626}.paid{color:#15803d}
 table{width:100%;border-collapse:collapse;font-size:12px}th,td{padding:10px 3px;border-bottom:1px solid #eee;text-align:center}th{color:#6b7280}
 .modal{position:fixed;inset:0;background:#0008;display:none;align-items:flex-end;z-index:30}.modal.show{display:flex}.sheet{width:100%;background:#fff;border-radius:20px 20px 0 0;padding:20px;max-height:90vh;overflow:auto}.sheet form{display:grid;gap:8px}
 .history{margin-top:12px}.history-item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #eee}
@@ -102,5 +102,5 @@ function backup(){let a=document.createElement('a');a.href=URL.createObjectURL(n
 function restore(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);if(!x.trainees||!x.attendance||!x.payments)throw 0;state=x;render();alert('تم استرجاع البيانات ✅')}catch{alert('ملف Backup غير صحيح')}};r.readAsText(f)}
 function settings(){document.getElementById('sheet').innerHTML='<h2>إعدادات</h2><p>البيانات محفوظة على هذا الجهاز.</p><p>الدفع مربوط بالشهر، والدفعات القديمة لا تدخل في حساب شهر جديد.</p><p>اعمل Backup بشكل دوري.</p><button onclick="closeModal()">تمام</button>';document.getElementById('modal').classList.add('show')}
 function closeModal(){document.getElementById('modal').classList.remove('show')}
-if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');render();
+if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js?v=5');render();
 </script></body></html>
